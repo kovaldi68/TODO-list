@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class='page' lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='style.css'>
+    <title>TODO list</title>
+</head>
+<body class='page__body page__body--light-theme page__body--dark-theme'>
+    <header class='page-header'>
+        <div class='page-header__container container'>
+            <img class='page-header__logo' src='/img/logo.svg' alt='Логотип TODO' width='109' height='20'>
+            <button class='page-header__theme-toggle button' type='button'></button>
+        </div>
+    </header>
+
+    <main class='page-main'>
+        <div class='page-main__container container'>
+            <h1 class='page-main__title visually-hidden'>TODO list</h1>
+            <div class='page-main__new-task new-task'>
+                <input class='new-task__checkbox checkbox' type='checkbox'></input>
+                <input class='new-task__input' type='text' name='new-task' placeholder="Create a new todo..."></input>
+            </div>
+            <div class='page-main__tasks tasks'>
+                <ul class='tasks__list'>
+                    <li class='tasks__item tasks__item--completed'>
+                        <input class='tasks__checkbox' type='checkbox'></input>
+                        <p class='tasks__text'>Complete online JavaScript course</p>
+                        <button class='tasks__close-button button close-button' type='button'></button>
+                    </li>
+                    <li class='tasks__item'>
+                        <input class='tasks__checkbox' type='checkbox'></input>
+                        <p class='tasks__text'>Jog around the park 3x</p>
+                        <button class='tasks__close-button button close-button' type='button'></button>
+                    </li>
+                    <li class='tasks__item'>
+                        <input class='tasks__checkbox' type='checkbox'></input>
+                        <p class='tasks__text'>10 minutes meditation</p>
+                        <button class='tasks__close-button button close-button' type='button'></button>
+                    </li>
+                    <li class='tasks__item'>
+                        <input class='tasks__checkbox' type='checkbox'></input>
+                        <p class='tasks__text'>Read for 1 hour</p>
+                        <button class='tasks__close-button button close-button' type='button'></button>
+                    </li>
+                    <li class='tasks__item'>
+                        <input class='tasks__checkbox' type='checkbox'></input>
+                        <p class='tasks__text'>Pick up groceries</p>
+                        <button class='tasks__close-button button close-button' type='button'></button>
+                    </li>
+                    <li class='tasks__item'>
+                        <input class='tasks__checkbox' type='checkbox'></input>
+                        <p class='tasks__text'>Complete Todo App on Frontend Mentor</p>
+                        <button class='tasks__close-button button close-button' type='button'></button>
+                    </li>
+                </ul>
+                <div class='tasks__control control'>
+                    <span class='control__info'>5 items left</span>
+                    <button class='control__clear-button button clear-button' type='button'>Clear Completed</button>
+                </div>
+            </div>
+            <div class='page-main__filter filter'>
+                <ul class='filter__list'>
+                    <li class='filter__item'>
+                        <input class='filter__radio visually-hidden' type='radio' value='all-tasks' id='all-tasks' name='task-type' checked>
+                        <label class='filter__label' for='all-tasks'>All</label>
+                    </li>
+                    <li class='filter__item'>
+                        <input class='filter__radio visually-hidden' type='radio' value='active-tasks' id='active-tasks' name='task-type'>
+                        <label class='filter__label' for='active-tasks'>Active</label>
+                    </li>
+                    <li class='filter__item'>
+                        <input class='filter__radio visually-hidden' type='radio' value='completed-tasks' id='completed-tasks' name='task-type'>
+                        <label class='filter__label' for='completed-tasks'>Completed</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class='page-footer'>
+        <div class='page-footer__container container'>
+            <p class='page-footer__tip'>Drag and drop to reorder list</p>
+        </div>
+    </footer>
+
+    <template id='task'>
+        <li class='tasks__item'>
+            <input class='tasks__checkbox' type='checkbox'></input>
+            <p class='tasks__text'>Complete Todo App on Frontend Mentor</p>
+            <button class='tasks__close-button button' type='button'></button>
+        </li>
+    </template>
+</body>
+</html>
