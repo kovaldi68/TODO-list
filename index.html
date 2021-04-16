@@ -27,7 +27,7 @@
             <div class='page-main__tasks tasks'>
                 <ul class='tasks__list'>
                     <li class='tasks__item tasks__item--completed'>
-                        <input class='tasks__checkbox' type='checkbox'></input>
+                        <input class='tasks__checkbox' type='checkbox' checked></input>
                         <p class='tasks__text'>Complete online JavaScript course</p>
                         <button class='tasks__close-button button close-button' type='button'></button>
                     </li>
@@ -59,25 +59,31 @@
                 </ul>
                 <div class='tasks__control control'>
                     <span class='control__info'>5 items left</span>
+                    <ul class='control__filter filter filter--desktop'>
+                        <li class='filter__item'>
+                            <a class='filter__name filter__name--active' href='#'>All</a>
+                        </li>
+                        <li class='filter__item'>
+                            <a class='filter__name' href='#'>Active</a>
+                        </li>
+                        <li class='filter__item'>
+                            <a class='filter__name' href='#'>Completed</a>
+                        </li>
+                    </ul>
                     <button class='control__clear-button button clear-button' type='button'>Clear Completed</button>
                 </div>
             </div>
-            <div class='page-main__filter filter'>
-                <ul class='filter__list'>
-                    <li class='filter__item'>
-                        <input class='filter__radio visually-hidden' type='radio' value='all-tasks' id='all-tasks' name='task-type' checked>
-                        <label class='filter__label' for='all-tasks'>All</label>
-                    </li>
-                    <li class='filter__item'>
-                        <input class='filter__radio visually-hidden' type='radio' value='active-tasks' id='active-tasks' name='task-type'>
-                        <label class='filter__label' for='active-tasks'>Active</label>
-                    </li>
-                    <li class='filter__item'>
-                        <input class='filter__radio visually-hidden' type='radio' value='completed-tasks' id='completed-tasks' name='task-type'>
-                        <label class='filter__label' for='completed-tasks'>Completed</label>
-                    </li>
-                </ul>
-            </div>
+            <ul class='page-main__filter filter'>
+                <li class='filter__item'>
+                    <a class='filter__name filter__name--active' href='#'>All</a>
+                </li>
+                <li class='filter__item'>
+                    <a class='filter__name' href='#'>Active</a>
+                </li>
+                <li class='filter__item'>
+                    <a class='filter__name' href='#'>Completed</a>
+                </li>
+            </ul>
         </div>
     </main>
 
