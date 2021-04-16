@@ -39,7 +39,7 @@
     background-color: transparent;
     border-style: none;
     border-radius: 0;
-    cursor: pointer;
+    cursor: url('/img/pointer.svg'), pointer;
 }
 
 .container {
@@ -165,6 +165,7 @@
 
 .checkbox {
     position: relative;
+    appearance: none;
     -webkit-appearance: none;
 	-moz-appearance: none;
     margin: 0;
@@ -172,7 +173,7 @@
     height: 20px;
     border: 1px solid var(--grey-light-decoration);
     border-radius: 50%;
-    cursor: pointer;
+    cursor: url('/img/pointer.svg'), pointer;
 }
 
 .new-task__checkbox {
@@ -294,6 +295,7 @@
     margin: 0;
     margin-right: auto;
     padding: 0;
+    cursor: url('/img/pointer.svg'), pointer;
 }
 
 .close-button {
@@ -395,6 +397,7 @@
 .filter__name {
     text-decoration: none;
     color: var(--grey-info);
+    cursor: url('/img/pointer.svg'), pointer;
 }
 
 .page__body--dark-theme .filter__name {
