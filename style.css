@@ -138,16 +138,6 @@
     position: relative;
 }
 
-.checkbox {
-    position: absolute;
-    margin: 0;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-}
-
 .new-task__input {
     padding: 18px 52px;
     width: 100%;
@@ -155,14 +145,96 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 12px;
-    color: var(--grey-info);
+    color: var(--grey-dark);
     border: none;
     border-radius: var(--border-radius);
 }
 
+.new-task__input::placeholder {
+    color: var(--grey-info);
+}
+
 .page__body--dark-theme .new-task__input {
-    color: var(--grey-new-task);
+    color: var(--grey-task);
     background-color: var(--grey-black);
+}
+
+.page__body--dark-theme .new-task__input::placeholder {
+    color: var(--grey-new-task);
+}
+
+.checkbox {
+    position: relative;
+    -webkit-appearance: none;
+	-moz-appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--grey-light-decoration);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.new-task__checkbox {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.page__body--dark-theme .checkbox {
+    border: 1px solid var(--grey-dark);
+}
+
+.checkbox:hover,
+.checkbox:focus {
+    border: none;
+    background-image: linear-gradient(135deg, #55DDFF 0%, #C058F3 100%);
+}
+
+.checkbox:hover::before,
+.checkbox:focus::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--white);
+}
+
+.page__body--dark-theme .checkbox:hover::before,
+.page__body--dark-theme .checkbox:focus::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--grey-black);
+}
+
+.checkbox:checked {
+    border: none;
+    background-image: url(/img/check-icon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+
+.checkbox:checked:hover,
+.checkbox:checked:focus {
+    background-image: url(/img/check-icon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+
+.checkbox:checked:hover::before,
+.checkbox:checked:focus::before {
+    display: none;
 }
 
 .page-main__tasks {
@@ -215,16 +287,13 @@
 }
 
 .tasks__checkbox {
-    margin: 0;
     margin-right: 12px;
-    width: 20px;
-    height: 20px;
 }
 
 .tasks__text {
     margin: 0;
-    padding: 0;
     margin-right: auto;
+    padding: 0;
 }
 
 .close-button {
