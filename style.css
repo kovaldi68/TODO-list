@@ -78,12 +78,12 @@
     }
 }
 
-.page__body--light-theme {
+.page__body {
     background-image: url('/img/background-mobile.jpg');
 }
 
 @media (min-width: 1440px) {
-    .page__body--light-theme {
+    .page__body {
         background-image: url('/img/background-desktop.jpg');
     }
 }
@@ -113,7 +113,7 @@
     margin-right: auto;
 }
 
-.page-header__theme-toggle {
+.theme-toggle {
     width: 20px;
     height: 20px;
     background-image: url('/img/moon-icon.svg');
@@ -122,11 +122,11 @@
     background-position: center;
 }
 
-.page__body--light-theme .page-header__theme-toggle {
+.theme-toggle {
     background-image: url('/img/moon-icon.svg');
 }
 
-.page__body--dark-theme .page-header__theme-toggle {
+.page__body--dark-theme .theme-toggle {
     background-image: url('/img/light-icon.svg');
 }
 
