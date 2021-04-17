@@ -1,18 +1,45 @@
 const body = document.querySelector('body');
 const themeToggle = document.querySelector('.theme-toggle');
-const checkboxes = document.querySelectorAll('.checkbox');
 const taskInput = document.querySelector('.new-task__input');
 const tasksList = document.querySelector('.tasks__list');
-const taskItem = document.querySelector('.tasks__item');
-const filterSttring = document.querySelector('.filter__name');
+const filterOptions = document.querySelectorAll('.filter__name');
 const taskTemplate = document.querySelector('#task-template').content.querySelector('.tasks__item');
+const clearCompletedButton = document.querySelector('.clear-button');
 
 const createTaskElement = (task) => {
     const clonedTask = taskTemplate.cloneNode(true);
+    const newTaskCheckbox = clonedTask.querySelector('.checkbox');
 
     clonedTask.querySelector('.tasks__text').textContent = task.value;
 
+    if (task.classList.contains('new-task__input--completed')) {
+        clonedTask.classList.add('tasks__item--completed');
+        newTaskCheckbox.checked = 'true';
+    }
+
     return clonedTask;
+}
+
+const clearCompletedTasks = () => {
+    const taskItems = document.querySelectorAll('.tasks__item');
+
+    clearCompletedButton.addEventListener('click', () => {
+        taskItems.forEach(element => {
+            if (element.classList.contains('tasks__item--completed')) {
+                element.remove();
+            }
+        });
+    });
+}
+
+// не доделана фильтрация
+const filtration = () => {
+    filterOptions.forEach(element => {
+        element.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            element.classList.toggle('filter__name--active')
+        })
+    });
 }
 
 const themeToggleHandler = () => {
@@ -22,24 +49,24 @@ const themeToggleHandler = () => {
 }
 
 const completedTasks = () => {
+    const checkboxes = document.querySelectorAll('.checkbox');
+
     checkboxes.forEach(element => {
         element.addEventListener('click', () => {
-            var task = element.closest('li');
-            if (body.classList.contains('page__body--dark-theme')) {
+            const taskItem = element.closest('li');
+            const taskInput = element.nextElementSibling;
+
+            if(taskItem) {
                 if (element.checked) {
-                    task.style.textDecoration = 'line-through';
-                    task.style.color = '#4d5067';
+                    taskItem.classList.add('tasks__item--completed')                    
                 } else {
-                    task.style.textDecoration = 'none';
-                    task.style.color = '#c8cbe7';
+                    taskItem.classList.remove('tasks__item--completed')
                 }
             } else {
                 if (element.checked) {
-                    task.style.textDecoration = 'line-through';
-                    task.style.color = '#d1d2da';
+                    taskInput.classList.add('new-task__input--completed')                   
                 } else {
-                    task.style.textDecoration = 'none';
-                    task.style.color = '#494c6b';
+                    taskInput.classList.remove('new-task__input--completed') 
                 }
             }
         })
@@ -52,6 +79,9 @@ const onEnterHandler = (evt) => {
         taskInput.value = '';
         document.removeEventListener('keydown', onEnterHandler);
         onCloseButtonHandler();
+        themeToggleHandler();
+        completedTasks();
+        clearCompletedTasks();
     }
 }
 
@@ -65,6 +95,9 @@ const onCloseButtonHandler = () => {
         })
     });
 }
+
+clearCompletedTasks();
+filtration();
 themeToggleHandler();
 completedTasks();
 onCloseButtonHandler();
