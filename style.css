@@ -249,6 +249,11 @@
 
 .page-main__tasks {
     margin-bottom: 16px;
+    background-color: var(--white);
+}
+
+.page__body--dark-theme .page-main__tasks {
+    background-color: var(--grey-black);
 }
 
 .tasks {
@@ -407,33 +412,33 @@
     font-size: 14px;
     line-height: 14px;
     color: var(--grey-info);
+    cursor: url('/img/pointer.svg'), pointer;
 }
 
 .filter__item:last-child {
     margin-right: 0;
 }
 
-.filter__name {
-    text-decoration: none;
-    color: var(--grey-info);
-    cursor: url('/img/pointer.svg'), pointer;
-}
-
-.filter__name:hover,
-.filter__name:focus {
+.filter__item:hover,
+.filter__item:focus {
     color: var(--grey-blue-task);
 }
 
-.page__body--dark-theme .filter__name {
+.page__body--dark-theme .filter__item {
     color: var(--grey-blue-info);
 }
 
-.page__body--dark-theme .filter__name:hover,
-.page__body--dark-theme .filter__name:focus {
+.page__body--dark-theme .filter__item:hover,
+.page__body--dark-theme .filter__item:focus {
     color: var(--grey-light-decoration);
 }
 
-.filter__item .filter__name--active {
+.filter__item--active {
+    color: var(--blue-active);
+}
+
+.filter__item--active:hover,
+.filter__item--active:focus {
     color: var(--blue-active);
 }
 
@@ -445,12 +450,16 @@
 .page-footer__tip {
     margin: 0;
     padding: 0;
+    padding: 10px;
     font-size: 14px;
     line-height: 14px;
     color: var(--grey-info);
     text-align: center;
+    border-radius: var(--border-radius);
+    background-color: var(--white);
 }
 
 .page__body--dark-theme .page-footer__tip {
     color: var(--grey-blue-info);
+    background-color: var(--dark-theme-background);
 }

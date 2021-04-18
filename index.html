@@ -31,27 +31,27 @@
                         <p class='tasks__text' for=''>Complete online JavaScript course</p>
                         <button class='tasks__close-button button close-button' type='button'></button>
                     </li>
-                    <li class='tasks__item'>
+                    <li class='tasks__item tasks__item--active'>
                         <input class='tasks__checkbox checkbox' type='checkbox'></input>
                         <p class='tasks__text'>Jog around the park 3x</p>
                         <button class='tasks__close-button button close-button' type='button'></button>
                     </li>
-                    <li class='tasks__item'>
+                    <li class='tasks__item tasks__item--active'>
                         <input class='tasks__checkbox checkbox' type='checkbox'></input>
                         <p class='tasks__text'>10 minutes meditation</p>
                         <button class='tasks__close-button button close-button' type='button'></button>
                     </li>
-                    <li class='tasks__item'>
+                    <li class='tasks__item tasks__item--active'>
                         <input class='tasks__checkbox checkbox' type='checkbox'></input>
                         <p class='tasks__text'>Read for 1 hour</p>
                         <button class='tasks__close-button button close-button' type='button'></button>
                     </li>
-                    <li class='tasks__item'>
+                    <li class='tasks__item tasks__item--active'>
                         <input class='tasks__checkbox checkbox' type='checkbox'></input>
                         <p class='tasks__text'>Pick up groceries</p>
                         <button class='tasks__close-button button close-button' type='button'></button>
                     </li>
-                    <li class='tasks__item'>
+                    <li class='tasks__item tasks__item--active'>
                         <input class='tasks__checkbox checkbox' type='checkbox'></input>
                         <p class='tasks__text'>Complete Todo App on Frontend Mentor</p>
                         <button class='tasks__close-button button close-button' type='button'></button>
@@ -60,29 +60,17 @@
                 <div class='tasks__control control'>
                     <span class='control__info'>5 items left</span>
                     <ul class='control__filter filter filter--desktop'>
-                        <li class='filter__item'>
-                            <a class='filter__name filter__name--active' href='#'>All</a>
-                        </li>
-                        <li class='filter__item'>
-                            <a class='filter__name' href='#'>Active</a>
-                        </li>
-                        <li class='filter__item'>
-                            <a class='filter__name' href='#'>Completed</a>
-                        </li>
+                        <li class='filter__item filter__item--active'>All</li>
+                        <li class='filter__item'>Active</li>
+                        <li class='filter__item'>Completed</li>
                     </ul>
                     <button class='control__clear-button button clear-button' type='button'>Clear Completed</button>
                 </div>
             </div>
             <ul class='page-main__filter filter'>
-                <li class='filter__item'>
-                    <a class='filter__name filter__name--active' href='#'>All</a>
-                </li>
-                <li class='filter__item'>
-                    <a class='filter__name' href='#'>Active</a>
-                </li>
-                <li class='filter__item'>
-                    <a class='filter__name' href='#'>Completed</a>
-                </li>
+                <li class='filter__item filter__item--active'>All</li>
+                <li class='filter__item'>Active</li>
+                <li class='filter__item'>Completed</li>
             </ul>
         </div>
     </main>
@@ -94,7 +82,7 @@
     </footer>
 
     <template id='task-template'>
-        <li class='tasks__item'>
+        <li class='tasks__item tasks__item--active'>
             <input class='tasks__checkbox checkbox' type='checkbox'></input>
             <p class='tasks__text'></p>
             <button class='tasks__close-button button close-button' type='button'></button>

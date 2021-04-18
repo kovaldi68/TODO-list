@@ -2,7 +2,6 @@ const body = document.querySelector('body');
 const themeToggle = document.querySelector('.theme-toggle');
 const taskInput = document.querySelector('.new-task__input');
 const tasksList = document.querySelector('.tasks__list');
-const filterOptions = document.querySelectorAll('.filter__name');
 const taskTemplate = document.querySelector('#task-template').content.querySelector('.tasks__item');
 const clearCompletedButton = document.querySelector('.clear-button');
 
@@ -14,10 +13,40 @@ const createTaskElement = (task) => {
 
     if (task.classList.contains('new-task__input--completed')) {
         clonedTask.classList.add('tasks__item--completed');
+        clonedTask.classList.remove('tasks__item--active');
         newTaskCheckbox.checked = 'true';
     }
 
     return clonedTask;
+}
+
+const filterTasks = () => {
+    const taskItems = document.querySelectorAll('.tasks__item');
+    const filters = document.querySelectorAll('.filter');
+    const filterOptions = document.querySelectorAll('.filter__item');
+
+    filters.forEach(element => {
+        element.addEventListener('click', event => {
+            if (event.target.tagName !== 'LI') return false;
+
+            let filterClass = event.target.textContent.toLowerCase();
+
+            filterOptions.forEach(elem => {
+                elem.classList.remove('filter__item--active');
+            });
+            
+            event.target.classList.add('filter__item--active');
+
+            taskItems.forEach(elem => {
+                let itemClass = elem.classList.value;
+                elem.classList.remove('visually-hidden');
+                if (!itemClass.includes(filterClass) && filterClass != 'all') {
+                    elem.classList.add('visually-hidden');
+                }
+            })
+        });
+    })
+    
 }
 
 const clearCompletedTasks = () => {
@@ -29,16 +58,6 @@ const clearCompletedTasks = () => {
                 element.remove();
             }
         });
-    });
-}
-
-// не доделана фильтрация
-const filtration = () => {
-    filterOptions.forEach(element => {
-        element.addEventListener('click', (evt) => {
-            evt.preventDefault();
-            element.classList.toggle('filter__name--active')
-        })
     });
 }
 
@@ -58,15 +77,19 @@ const completedTasks = () => {
 
             if(taskItem) {
                 if (element.checked) {
-                    taskItem.classList.add('tasks__item--completed')                    
+                    taskItem.classList.add('tasks__item--completed');
+                    taskItem.classList.remove('tasks__item--active');                
                 } else {
-                    taskItem.classList.remove('tasks__item--completed')
+                    taskItem.classList.remove('tasks__item--completed');
+                    taskItem.classList.add('tasks__item--active');
                 }
             } else {
                 if (element.checked) {
-                    taskInput.classList.add('new-task__input--completed')                   
+                    taskInput.classList.add('new-task__input--completed');
+                    taskInput.classList.remove('tasks__item--active');            
                 } else {
-                    taskInput.classList.remove('new-task__input--completed') 
+                    taskInput.classList.remove('new-task__input--completed');
+                    taskInput.classList.add('tasks__item--active');
                 }
             }
         })
@@ -77,11 +100,14 @@ const onEnterHandler = (evt) => {
     if (evt.key === 'Enter') {
         tasksList.append(createTaskElement(taskInput));
         taskInput.value = '';
+        taskInput.style.textDecorationLine = 'none';
+        taskInput.style.color = '#9495a5';
         document.removeEventListener('keydown', onEnterHandler);
         onCloseButtonHandler();
         themeToggleHandler();
         completedTasks();
         clearCompletedTasks();
+        filterTasks();
     }
 }
 
@@ -96,8 +122,8 @@ const onCloseButtonHandler = () => {
     });
 }
 
+filterTasks();
 clearCompletedTasks();
-filtration();
 themeToggleHandler();
 completedTasks();
 onCloseButtonHandler();
