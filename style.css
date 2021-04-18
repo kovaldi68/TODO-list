@@ -433,12 +433,12 @@
     color: var(--grey-light-decoration);
 }
 
-.filter__item--active {
+.filter .filter__item--active {
     color: var(--blue-active);
 }
 
-.filter__item--active:hover,
-.filter__item--active:focus {
+.filter .filter__item--active:hover,
+.filter .filter__item--active:focus {
     color: var(--blue-active);
 }
 
