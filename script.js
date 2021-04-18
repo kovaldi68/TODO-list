@@ -29,7 +29,7 @@ const filterTasks = () => {
         element.addEventListener('click', event => {
             if (event.target.tagName !== 'LI') return false;
 
-            let filterClass = event.target.textContent.toLowerCase();
+            const filterClass = event.target.textContent.toLowerCase();
 
             filterOptions.forEach(elem => {
                 elem.classList.remove('filter__item--active');
@@ -96,20 +96,25 @@ const completedTasks = () => {
     });
 }
 
-const onEnterHandler = (evt) => {
-    if (evt.key === 'Enter') {
-        tasksList.append(createTaskElement(taskInput));
-        taskInput.value = '';
-        taskInput.style.textDecorationLine = 'none';
-        taskInput.style.color = '#9495a5';
-        document.removeEventListener('keydown', onEnterHandler);
-        onCloseButtonHandler();
-        themeToggleHandler();
-        completedTasks();
-        clearCompletedTasks();
-        filterTasks();
+const message = () => {
+    const alarm = document.createElement('p');
+
+    alarm.textContent = 'Самое время добавить задачу в список'
+    alarm.classList.add('tasks__alarm');
+
+    if (tasksList.children.length == 0) {
+        tasksList.appendChild(alarm);
     }
 }
+
+const deleteMessage = () => {
+    const message = document.querySelector('.tasks__alarm');
+
+    if (message) {
+        message.remove();
+    }
+}
+
 
 const onCloseButtonHandler = () => {
     const closeButtons = document.querySelectorAll('.close-button');
@@ -118,8 +123,26 @@ const onCloseButtonHandler = () => {
         element.addEventListener('click', () => {
             const item = element.closest('li');
             item.remove();
+            message();
         })
     });
+}
+
+const onEnterHandler = (evt) => {
+    if (evt.key === 'Enter') {
+        tasksList.append(createTaskElement(taskInput));
+        taskInput.value = '';
+        taskInput.style.textDecorationLine = 'none';
+        taskInput.style.color = '#9495a5';
+        
+        document.removeEventListener('keydown', onEnterHandler);
+        onCloseButtonHandler();
+        themeToggleHandler();
+        completedTasks();
+        clearCompletedTasks();
+        filterTasks();
+        deleteMessage();
+    }
 }
 
 filterTasks();

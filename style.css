@@ -148,6 +148,7 @@
     color: var(--grey-dark);
     border: none;
     border-radius: var(--border-radius);
+    caret-color: var(--blue-active);
 }
 
 .new-task__input--completed {
@@ -284,6 +285,20 @@
     color: var(--grey-blue-task);
     background-color: var(--white);
     border-bottom: 1px solid var(--grey-light-decoration);
+}
+
+.tasks__alarm {
+    padding: 15px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: var(--blue-active);
+    background-color: var(--white);
+}
+
+.page__body--dark-theme .tasks__alarm {
+    background-color: var(--grey-black);
 }
 
 .page__body--dark-theme .tasks__item {
