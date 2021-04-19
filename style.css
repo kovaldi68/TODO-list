@@ -122,10 +122,6 @@
     background-position: center;
 }
 
-.theme-toggle {
-    background-image: url('/img/moon-icon.svg');
-}
-
 .page__body--dark-theme .theme-toggle {
     background-image: url('/img/light-icon.svg');
 }

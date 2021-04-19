@@ -110,7 +110,6 @@ const onEnterHandler = (evt) => {
             taskInput.style.color = '#9495a5';
             document.removeEventListener('keydown', onEnterHandler);
             onCloseButtonHandler();
-            themeToggleHandler();
             completedTasks();
             clearCompletedTasks();
             filterTasks();
