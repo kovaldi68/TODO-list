@@ -52,7 +52,7 @@ const message = () => {
 }
 
 const deleteMessage = () => {
-    const message = document.querySelector('.tasks__alertgit ');
+    const message = document.querySelector('.tasks__alert');
     
     if (message) {
         message.remove();
