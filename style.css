@@ -287,7 +287,7 @@
     border-bottom: 1px solid var(--grey-light-decoration);
 }
 
-.tasks__alarm {
+.tasks__alert {
     padding: 15px;
     font-weight: 700;
     font-size: 14px;
@@ -295,9 +295,10 @@
     text-align: center;
     color: var(--blue-active);
     background-color: var(--white);
+    border-bottom: 1px solid var(--grey-light-decoration);
 }
 
-.page__body--dark-theme .tasks__alarm {
+.page__body--dark-theme .tasks__alert {
     background-color: var(--grey-black);
 }
 

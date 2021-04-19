@@ -5,6 +5,8 @@ const tasksList = document.querySelector('.tasks__list');
 const taskTemplate = document.querySelector('#task-template').content.querySelector('.tasks__item');
 const clearCompletedButton = document.querySelector('.clear-button');
 
+const ERROR_SHOW_TIME = 700;
+
 const createTaskElement = (task) => {
     const clonedTask = taskTemplate.cloneNode(true);
     const newTaskCheckbox = clonedTask.querySelector('.checkbox');
@@ -18,6 +20,55 @@ const createTaskElement = (task) => {
     }
 
     return clonedTask;
+}
+
+const clearCompletedTasks = () => {
+    const taskItems = document.querySelectorAll('.tasks__item');
+    
+    clearCompletedButton.addEventListener('click', () => {
+        taskItems.forEach(element => {
+            if (element.classList.contains('tasks__item--completed')) {
+                element.remove();
+            }
+        });
+    });
+}
+
+const themeToggleHandler = () => {
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('page__body--dark-theme');
+    })
+}
+
+const message = () => {
+    const alert = document.createElement('p');
+
+    alert.textContent = 'Самое время добавить задачу в список'
+    alert.classList.add('tasks__alert');
+
+    if (tasksList.children.length == 0) {
+        tasksList.appendChild(alert);
+    }
+}
+
+const deleteMessage = () => {
+    const message = document.querySelector('.tasks__alarm');
+    
+    if (message) {
+        message.remove();
+    }
+}
+
+const onCloseButtonHandler = () => {
+    const closeButtons = document.querySelectorAll('.close-button');
+
+    closeButtons.forEach(element => {
+        element.addEventListener('click', () => {
+            const item = element.closest('li');
+            item.remove();
+            message();
+        })
+    });
 }
 
 const filterTasks = () => {
@@ -46,25 +97,26 @@ const filterTasks = () => {
             })
         });
     })
-    
 }
 
-const clearCompletedTasks = () => {
-    const taskItems = document.querySelectorAll('.tasks__item');
-
-    clearCompletedButton.addEventListener('click', () => {
-        taskItems.forEach(element => {
-            if (element.classList.contains('tasks__item--completed')) {
-                element.remove();
-            }
-        });
-    });
-}
-
-const themeToggleHandler = () => {
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('page__body--dark-theme');
-    })
+const onEnterHandler = (evt) => {
+    if (evt.key === 'Enter') {
+        if (taskInput.value == '') {
+            showError();
+        } else {
+            tasksList.append(createTaskElement(taskInput));
+            taskInput.value = '';
+            taskInput.style.textDecorationLine = 'none';
+            taskInput.style.color = '#9495a5';
+            document.removeEventListener('keydown', onEnterHandler);
+            onCloseButtonHandler();
+            themeToggleHandler();
+            completedTasks();
+            clearCompletedTasks();
+            filterTasks();
+            deleteMessage();
+        }
+    }
 }
 
 const completedTasks = () => {
@@ -74,7 +126,7 @@ const completedTasks = () => {
         element.addEventListener('click', () => {
             const taskItem = element.closest('li');
             const taskInput = element.nextElementSibling;
-
+            
             if(taskItem) {
                 if (element.checked) {
                     taskItem.classList.add('tasks__item--completed');
@@ -96,54 +148,28 @@ const completedTasks = () => {
     });
 }
 
-const message = () => {
-    const alarm = document.createElement('p');
-
-    alarm.textContent = 'Самое время добавить задачу в список'
-    alarm.classList.add('tasks__alarm');
-
-    if (tasksList.children.length == 0) {
-        tasksList.appendChild(alarm);
-    }
+const showError = () => {
+    const errorContainer = document.createElement('div');
+    errorContainer.style.zIndex = 100;
+    errorContainer.style.position = 'absolute';
+    errorContainer.style.left = 0;
+    errorContainer.style.top = 0;
+    errorContainer.style.right = 0;
+    errorContainer.style.color = '#3a7cfd';
+    errorContainer.style.padding = '10px 10px';
+    errorContainer.style.fontSize = '15px';
+    errorContainer.style.textAlign = 'center';
+    errorContainer.style.backgroundColor = 'white';
+  
+    errorContainer.textContent = 'Введите текст задачи';
+  
+    document.body.append(errorContainer);
+  
+    setTimeout(() => {
+      errorContainer.remove();
+    }, ERROR_SHOW_TIME);
 }
 
-const deleteMessage = () => {
-    const message = document.querySelector('.tasks__alarm');
-
-    if (message) {
-        message.remove();
-    }
-}
-
-
-const onCloseButtonHandler = () => {
-    const closeButtons = document.querySelectorAll('.close-button');
-
-    closeButtons.forEach(element => {
-        element.addEventListener('click', () => {
-            const item = element.closest('li');
-            item.remove();
-            message();
-        })
-    });
-}
-
-const onEnterHandler = (evt) => {
-    if (evt.key === 'Enter') {
-        tasksList.append(createTaskElement(taskInput));
-        taskInput.value = '';
-        taskInput.style.textDecorationLine = 'none';
-        taskInput.style.color = '#9495a5';
-        
-        document.removeEventListener('keydown', onEnterHandler);
-        onCloseButtonHandler();
-        themeToggleHandler();
-        completedTasks();
-        clearCompletedTasks();
-        filterTasks();
-        deleteMessage();
-    }
-}
 
 filterTasks();
 clearCompletedTasks();
