@@ -4,6 +4,7 @@ const taskInput = document.querySelector('.new-task__input');
 const tasksList = document.querySelector('.tasks__list');
 const taskTemplate = document.querySelector('#task-template').content.querySelector('.tasks__item');
 const clearCompletedButton = document.querySelector('.clear-button');
+const itemsLeftInfo = document.querySelector('.control__info');
 
 const ERROR_SHOW_TIME = 700;
 
@@ -31,7 +32,14 @@ const clearCompletedTasks = () => {
                 element.remove();
             }
         });
+        leftItemsCounter();
     });
+}
+
+const leftItemsCounter = () => {
+    const leftTasks = tasksList.querySelectorAll('.tasks__item--active');
+
+    itemsLeftInfo.textContent = `${leftTasks.length} items left`;
 }
 
 const themeToggleHandler = () => {
@@ -66,6 +74,7 @@ const onCloseButtonHandler = () => {
         element.addEventListener('click', () => {
             const item = element.closest('li');
             item.remove();
+            leftItemsCounter();
             message();
         })
     });
@@ -114,6 +123,7 @@ const onEnterHandler = (evt) => {
             clearCompletedTasks();
             filterTasks();
             deleteMessage();
+            leftItemsCounter();
         }
     }
 }
@@ -143,6 +153,8 @@ const completedTasks = () => {
                     newTaskInput.classList.add('tasks__item--active');
                 }
             }
+                
+            leftItemsCounter();
         })
     });
 }
@@ -170,6 +182,8 @@ const showError = () => {
 }
 
 
+
+leftItemsCounter();
 filterTasks();
 clearCompletedTasks();
 themeToggleHandler();
