@@ -123,24 +123,24 @@ const completedTasks = () => {
 
     checkboxes.forEach(element => {
         element.addEventListener('click', () => {
-            const taskItem = element.closest('li');
-            const taskInput = element.nextElementSibling;
+            const taskListItem = element.closest('li');
+            const newTaskInput = element.nextElementSibling;
             
-            if(taskItem) {
+            if(taskListItem) {
                 if (element.checked) {
-                    taskItem.classList.add('tasks__item--completed');
-                    taskItem.classList.remove('tasks__item--active');                
+                    taskListItem.classList.add('tasks__item--completed');
+                    taskListItem.classList.remove('tasks__item--active');                
                 } else {
-                    taskItem.classList.remove('tasks__item--completed');
-                    taskItem.classList.add('tasks__item--active');
+                    taskListItem.classList.remove('tasks__item--completed');
+                    taskListItem.classList.add('tasks__item--active');
                 }
             } else {
                 if (element.checked) {
-                    taskInput.classList.add('new-task__input--completed');
-                    taskInput.classList.remove('tasks__item--active');            
+                    newTaskInput.classList.add('new-task__input--completed');
+                    newTaskInput.classList.remove('tasks__item--active');            
                 } else {
-                    taskInput.classList.remove('new-task__input--completed');
-                    taskInput.classList.add('tasks__item--active');
+                    newTaskInput.classList.remove('new-task__input--completed');
+                    newTaskInput.classList.add('tasks__item--active');
                 }
             }
         })
